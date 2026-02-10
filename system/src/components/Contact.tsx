@@ -33,7 +33,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">{t.contact.card_email}</h3>
-                <p className="text-slate-400">contact@devsystem.com</p>
+                <p className="text-slate-400">claudioglitz1@gmail.com</p>
               </div>
             </div>
 
@@ -55,7 +55,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">WhatsApp / Chat</h3>
-                <p className="text-slate-400">+55 11 99999-9999</p>
+                <p className="text-slate-400">+55 47 99952-1198</p>
               </div>
             </div>
 
