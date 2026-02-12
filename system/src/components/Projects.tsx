@@ -12,6 +12,7 @@ const Projects = () => {
       title: t.projects.project1_title,
       description: t.projects.project1_desc,
       tags: ["Firebase", "Vanilla JavaScript", "CSS3"],
+      image: "/projects/CreditSystemPrint.png",
       demoUrl: "https://fiado-padaria.web.app/",
       codeUrl: "https://github.com/Claudio-Litz/Fiado",
     },
@@ -19,6 +20,7 @@ const Projects = () => {
       title: t.projects.project2_title,
       description: t.projects.project2_desc,
       tags: ["Django", "Pillow", "Fancybox"],
+      image: "/projects/GalleryPrint.png",
       demoUrl: "https://your-demo-url-2.com",
       codeUrl: "https://github.com/Claudio-Litz/client-gallery-generator",
     },
@@ -26,6 +28,7 @@ const Projects = () => {
       title: t.projects.project3_title,
       description: t.projects.project3_desc,
       tags: ["Streamlit", "Supabase", "Plotly Express"],
+      image: "/projects/GestaoPrint.png",
       demoUrl: "https://your-demo-url-3.com",
       codeUrl: "https://github.com/Claudio-Litz/financeiro-dash",
     },
@@ -46,9 +49,13 @@ const Projects = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div key={index} className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500/50 transition-all">
-              {/* Fake Image Placeholder */}
-              <div className="h-48 bg-slate-700 flex items-center justify-center">
-                 <span className="text-slate-500">Project Image {index + 1}</span>
+              {/* Project Image */}
+              <div className="h-48 bg-slate-700 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
               </div>
               
               <div className="p-6">
