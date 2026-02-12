@@ -13,7 +13,7 @@ const Projects = () => {
       description: t.projects.project1_desc,
       tags: ["Firebase", "Vanilla JavaScript", "CSS3"],
       image: "/projects/CreditSystemPrint.png",
-      demoUrl: "https://fiado-padaria.web.app/",
+      demoUrl: "https://test-credit-system.web.app",
       codeUrl: "https://github.com/Claudio-Litz/Fiado",
     },
     {
