@@ -21,7 +21,7 @@ const Projects = () => {
       description: t.projects.project2_desc,
       tags: ["Django", "Pillow", "Fancybox"],
       image: "/projects/GalleryPrint.png",
-      demoUrl: "https://your-demo-url-2.com",
+      demoUrl: "https://testesitesdeployed.pythonanywhere.com/",
       codeUrl: "https://github.com/Claudio-Litz/client-gallery-generator",
     },
     {
