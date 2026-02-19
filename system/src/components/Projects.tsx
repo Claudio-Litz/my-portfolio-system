@@ -29,7 +29,7 @@ const Projects = () => {
       description: t.projects.project3_desc,
       tags: ["Streamlit", "Supabase", "Plotly Express"],
       image: "/projects/GestaoPrint.png",
-      demoUrl: "https://your-demo-url-3.com",
+      demoUrl: "https://dash-financeiro-testesitesdeployed.streamlit.app/",
       codeUrl: "https://github.com/Claudio-Litz/financeiro-dash",
     },
   ];
