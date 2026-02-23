@@ -96,37 +96,36 @@ const Contact = () => {
 
           </div>
 
-          {/* LinkedIn Card */}
-            <a 
-              href="https://www.linkedin.com/in/claudio-litz-65201a357/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 hover:bg-slate-800/50 transition-all cursor-pointer group"
-            >
-              <div className="p-3 bg-blue-600/10 rounded-lg group-hover:scale-110 transition-transform">
-                <Linkedin className="w-6 h-6 text-blue-500" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">LinkedIn</h3>
-                <p className="text-slate-400">Let's connect professionally</p>
-              </div>
-            </a>
+          {/* Social Links Mini-Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              {/* LinkedIn Compact Card */}
+              <a 
+                href="https://www.linkedin.com/in/claudio-litz-65201a357/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-3 p-4 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 hover:bg-slate-800/50 transition-all cursor-pointer group"
+              >
+                <div className="p-2 bg-blue-600/10 rounded-lg group-hover:scale-110 transition-transform">
+                  <Linkedin className="w-5 h-5 text-blue-500" />
+                </div>
+                <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors">LinkedIn</h3>
+              </a>
 
-            {/* GitHub Card */}
-            <a 
-              href="https://github.com/Claudio-Litz" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-slate-500/50 hover:bg-slate-800/50 transition-all cursor-pointer group"
-            >
-              <div className="p-3 bg-slate-700/50 rounded-lg group-hover:scale-110 transition-transform">
-                <Github className="w-6 h-6 text-slate-300" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">GitHub</h3>
-                <p className="text-slate-400">Check out my open source code</p>
-              </div>
-            </a>
+              {/* GitHub Compact Card */}
+              <a 
+                href="https://github.com/Claudio-Litz" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-3 p-4 bg-slate-900 rounded-xl border border-slate-700 hover:border-slate-500/50 hover:bg-slate-800/50 transition-all cursor-pointer group"
+              >
+                <div className="p-2 bg-slate-700/50 rounded-lg group-hover:scale-110 transition-transform">
+                  <Github className="w-5 h-5 text-slate-300" />
+                </div>
+                <h3 className="text-base font-bold text-white group-hover:text-slate-300 transition-colors">GitHub</h3>
+              </a>
+
+            </div>
 
           {/* RIGHT SIDE: The Form */}
           <div className="bg-slate-900 p-8 rounded-2xl border border-slate-700 shadow-xl">
