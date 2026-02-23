@@ -98,7 +98,7 @@ const Contact = () => {
 
           {/* LinkedIn Card */}
             <a 
-              href="www.linkedin.com/in/claudio-litz-65201a357" 
+              href="https://www.linkedin.com/in/claudio-litz-65201a357/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 hover:bg-slate-800/50 transition-all cursor-pointer group"
