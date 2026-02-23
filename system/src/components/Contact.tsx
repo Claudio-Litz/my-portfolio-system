@@ -106,7 +106,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">LinkedIn</h3>
-                <p className="text-slate-400">Connect with me</p>
+                <p className="text-slate-400">{t.contact.linkedin_subtitle}</p>
               </div>
             </a>
 

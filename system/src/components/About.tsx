@@ -23,9 +23,15 @@ const About = () => {
         <div className="flex flex-col md:flex-row items-center gap-12 bg-slate-800 p-8 md:p-12 rounded-2xl border border-slate-700 shadow-xl">
           
           {/* Left Side: Avatar/Image Placeholder */}
-          <div className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 bg-slate-700 rounded-full flex items-center justify-center border-4 border-slate-800 shadow-inner overflow-hidden">
-            {/* You can replace this icon with an <img> tag later! */}
-            <User className="w-24 h-24 text-slate-500" />
+          <div className="relative w-48 h-48 md:w-64 md:h-64 flex-shrink-0 rounded-full border-4 border-slate-800 shadow-inner overflow-hidden bg-slate-700">
+            <Image 
+              src="/profile.jpg" /* Make sure this exactly matches the file name in your public folder! */
+              alt="Claudio Glitz"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 192px, 256px"
+              priority
+            />
           </div>
 
           {/* Right Side: Text Description */}

@@ -54,6 +54,7 @@ export const translations = {
       email_label: "Email",
       message_label: "Tell me about your problem",
       btn_submit: "Send Message",
+      linkedin_subtitle: "Connect with me on LinkedIn",
     }
   },
   pt: {
@@ -111,6 +112,7 @@ export const translations = {
       email_label: "Email",
       message_label: "Me conte sobre o seu problema",
       btn_submit: "Enviar Mensagem",
+      linkedin_subtitle: "Conecte-se comigo no LinkedIn",
     }
   },
   es: {
@@ -168,6 +170,7 @@ export const translations = {
       email_label: "Correo",
       message_label: "Cuéntame sobre tu problema",
       btn_submit: "Enviar Mensaje",
+      linkedin_subtitle: "Conecta conmigo en LinkedIn",
     }
   },
   de: {
@@ -225,6 +228,7 @@ export const translations = {
       email_label: "E-Mail",
       message_label: "Beschreiben Sie Ihr Anliegen",
       btn_submit: "Nachricht senden",
+      linkedin_subtitle: "Vernetzen Sie sich mit mir",
     }
   }
 };
