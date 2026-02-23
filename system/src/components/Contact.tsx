@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, MessageSquare } from 'lucide-react'; // Added icons
+import { Mail, MapPin, Send, MessageSquare, Github, Linkedin } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Contact = () => {
@@ -95,6 +95,38 @@ const Contact = () => {
             </div>
 
           </div>
+
+          {/* LinkedIn Card */}
+            <a 
+              href="www.linkedin.com/in/claudio-litz-65201a357" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 hover:bg-slate-800/50 transition-all cursor-pointer group"
+            >
+              <div className="p-3 bg-blue-600/10 rounded-lg group-hover:scale-110 transition-transform">
+                <Linkedin className="w-6 h-6 text-blue-500" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-1">LinkedIn</h3>
+                <p className="text-slate-400">Let's connect professionally</p>
+              </div>
+            </a>
+
+            {/* GitHub Card */}
+            <a 
+              href="https://github.com/Claudio-Litz" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-slate-500/50 hover:bg-slate-800/50 transition-all cursor-pointer group"
+            >
+              <div className="p-3 bg-slate-700/50 rounded-lg group-hover:scale-110 transition-transform">
+                <Github className="w-6 h-6 text-slate-300" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-1">GitHub</h3>
+                <p className="text-slate-400">Check out my open source code</p>
+              </div>
+            </a>
 
           {/* RIGHT SIDE: The Form */}
           <div className="bg-slate-900 p-8 rounded-2xl border border-slate-700 shadow-xl">
