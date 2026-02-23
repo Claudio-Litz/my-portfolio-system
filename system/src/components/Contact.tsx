@@ -117,10 +117,10 @@ const Contact = () => {
               href="https://github.com/Claudio-Litz" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-slate-500/50 transition-all cursor-pointer block"
+              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all cursor-pointer block"
             >
-              <div className="p-3 bg-slate-500/10 rounded-lg">
-                <Github className="w-6 h-6 text-slate-400" />
+              <div className="p-3 bg-blue-500/10 rounded-lg">
+                <Github className="w-6 h-6 text-blue-400" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">GitHub</h3>
