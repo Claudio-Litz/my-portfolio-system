@@ -10,6 +10,7 @@ export default function Home() {
     <main className="min-h-screen bg-slate-900">
       <Navbar /> {/* Place it at the very top */}
       <Hero />
+      <About /> 
       <Services />
       <Projects />
       <Contact />

@@ -2,10 +2,16 @@ export const translations = {
   en: {
     nav: {
       home: "Home",
+      about: "About",
       services: "Services",
       projects: "Projects",
       contact: "Contact",
       hire: "Hire Me",
+    },
+    about: {
+      title: "Who Am I?",
+      subtitle: "Get to know the developer behind the code.",
+      description: "Hello! I'm Claudio, a passionate freelance system developer based in Brazil. I specialize in turning complex business problems into simple, automated digital solutions. When I'm not coding, I'm constantly learning new technologies to bring the best tools to my clients.",
     },
     hero: {
       badge: "Available for New Projects",
@@ -53,10 +59,16 @@ export const translations = {
   pt: {
     nav: {
       home: "Início",
+      about: "Sobre Mim",
       services: "Serviços",
       projects: "Projetos",
       contact: "Contato",
       hire: "Me Contrate",
+    },
+    about: { 
+      title: "Quem Sou Eu?",
+      subtitle: "Conheça o desenvolvedor por trás do código.",
+      description: "Olá! Sou o Claudio, um desenvolvedor de sistemas freelancer apaixonado pelo que faz. Sou especialista em transformar problemas complexos de negócios em soluções digitais simples e automatizadas. Quando não estou programando, estou sempre aprendendo novas tecnologias para trazer as melhores ferramentas aos meus clientes.",
     },
     hero: {
       badge: "Disponível para Projetos",
@@ -104,10 +116,16 @@ export const translations = {
   es: {
     nav: {
       home: "Inicio",
+      about: "Sobre Mí",
       services: "Servicios",
       projects: "Proyectos",
       contact: "Contacto",
       hire: "Contrátame",
+    },
+    about: { 
+      title: "¿Quién Soy Yo?",
+      subtitle: "Conoce al desarrollador detrás del código.",
+      description: "¡Hola! Soy Claudio, un apasionado desarrollador de sistemas freelance radicado en Brasil. Me especializo en transformar problemas comerciales complejos en soluciones digitales simples y automatizadas. Cuando no estoy programando, siempre estoy aprendiendo nuevas tecnologías para brindar las mejores herramientas a mis clientes.",
     },
     hero: {
       badge: "Disponible para Proyectos",
@@ -155,10 +173,16 @@ export const translations = {
   de: {
     nav: {
       home: "Startseite",
+      about: "Über mich",
       services: "Leistungen",
       projects: "Projekte",
       contact: "Kontakt",
       hire: "Beauftragen Sie mich",
+    },
+    about: {
+      title: "Wer bin ich?",
+      subtitle: "Lernen Sie den Entwickler hinter dem Code kennen.",
+      description: "Hallo! Ich bin Claudio, ein leidenschaftlicher freiberuflicher Systementwickler aus Brasilien. Ich bin darauf spezialisiert, komplexe Geschäftsprobleme in einfache, automatisierte digitale Lösungen zu verwandeln. Wenn ich nicht programmiere, lerne ich ständig neue Technologien, um meinen Kunden die besten Tools bieten zu können.",
     },
     hero: {
       badge: "Verfügbar für neue Projekte",
