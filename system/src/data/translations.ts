@@ -34,7 +34,7 @@ export const translations = {
     projects: {
       title: "Recent Work",
       subtitle: "Real solutions for real businesses.",
-      project1_title: "a",
+      project1_title: "Credit Management System",
       project1_desc: "Web application for managing customer credit tabs, featuring real-time tracking of debts, clients, and products with a modern UI.",
       project2_title: "Photon Client Gallery",
       project2_desc: "Professional platform for photographers to manage and share responsive, password-protected private galleries with their clients securely.",
