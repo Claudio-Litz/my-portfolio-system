@@ -94,15 +94,13 @@ const Contact = () => {
               </div>
             </div>
 
-          </div>
-
-          {/* LinkedIn Card */}
+            {/* LinkedIn Card */}
             <a 
               href="https://www.linkedin.com/in/claudio-litz-65201a357/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all cursor-pointer block"
-            >
+              >
               <div className="p-3 bg-blue-500/10 rounded-lg">
                 <Linkedin className="w-6 h-6 text-blue-500" />
               </div>
@@ -128,6 +126,9 @@ const Contact = () => {
               </div>
             </a>
 
+          </div>
+
+          
           {/* RIGHT SIDE: The Form */}
           <div className="bg-slate-900 p-8 rounded-2xl border border-slate-700 shadow-xl">
             <h3 className="text-xl font-bold text-white mb-6">{t.contact.form_title}</h3>
