@@ -1,19 +1,21 @@
-import Navbar from "@/components/Navbar"; // Import the Navbar
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-900">
-      <Navbar /> {/* Place it at the very top */}
+    <main className="min-h-screen" style={{ background: 'var(--bg-base)' }}>
+      <Navbar />
       <Hero />
-      <About /> 
+      <About />
       <Services />
       <Projects />
+      <Testimonials />
       <Contact />
       <Footer />
     </main>

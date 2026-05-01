@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, MessageSquare, Github, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Send, MessageSquare, GitBranch, Link2, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Contact = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [message, setMessage] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -18,136 +18,159 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
-
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
       if (response.ok) {
         setStatus('success');
-        setMessage('Email sent successfully! I will get back to you soon.');
+        setStatusMessage('Message sent! I\'ll get back to you within 24 hours.');
         setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setStatus('idle'), 5000);
+        setTimeout(() => setStatus('idle'), 6000);
       } else {
         setStatus('error');
-        setMessage('Failed to send email. Please try again.');
+        setStatusMessage('Failed to send. Try reaching me on WhatsApp instead.');
       }
-    } catch (error) {
+    } catch {
       setStatus('error');
-      setMessage('An error occurred. Please try again.');
-      console.error('Form submission error:', error);
+      setStatusMessage('Something went wrong. Please try again.');
     }
   };
 
+  const contactLinks = [
+    {
+      icon: <MessageSquare className="w-5 h-5" />,
+      label: 'WhatsApp',
+      value: '+55 47 99952-1198',
+      href: 'https://wa.me/5547999521198',
+      color: '#10b981',
+    },
+    {
+      icon: <Mail className="w-5 h-5" />,
+      label: t.contact.card_email,
+      value: 'claudioglitz1@gmail.com',
+      href: 'mailto:claudioglitz1@gmail.com',
+      color: '#3b82f6',
+    },
+    {
+      icon: <Link2 className="w-5 h-5" />,
+      label: 'LinkedIn',
+      value: t.contact.linkedin_subtitle,
+      href: 'https://www.linkedin.com/in/claudio-litz-65201a357/',
+      color: '#0ea5e9',
+    },
+    {
+      icon: <GitBranch className="w-5 h-5" />,
+      label: 'GitHub',
+      value: '@Claudio-Litz',
+      href: 'https://github.com/Claudio-Litz',
+      color: '#94a3b8',
+    },
+    {
+      icon: <MapPin className="w-5 h-5" />,
+      label: t.contact.card_location,
+      value: t.contact.card_location_value,
+      href: null,
+      color: '#f59e0b',
+    },
+  ];
+
+  const inputStyle = {
+    width: '100%',
+    padding: '12px 16px',
+    borderRadius: '10px',
+    background: 'var(--bg-base)',
+    border: '1px solid var(--border)',
+    color: 'var(--text-primary)',
+    outline: 'none',
+    fontSize: '14px',
+    transition: 'border-color 0.2s',
+    fontFamily: 'DM Sans, sans-serif',
+  };
+
   return (
-    <section className="py-20 bg-slate-800" id="contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
+    <section className="py-24" id="contact" style={{ background: 'var(--bg-surface)' }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <p className="section-label mb-4">{t.contact.subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Syne, sans-serif', color: 'var(--text-primary)' }}>
             {t.contact.title}
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            {t.contact.subtitle}
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
-          {/* LEFT SIDE: Contact Info Cards */}
-          <div className="space-y-6">
-            
-            {/* Email Card */}
-            <div className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all">
-              <div className="p-3 bg-blue-500/10 rounded-lg">
-                <Mail className="w-6 h-6 text-blue-500" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">{t.contact.card_email}</h3>
-                <p className="text-slate-400">claudioglitz1@gmail.com</p>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
 
-            {/* Location Card */}
-            <div className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all">
-              <div className="p-3 bg-purple-500/10 rounded-lg">
-                <MapPin className="w-6 h-6 text-purple-500" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">{t.contact.card_location}</h3>
-                <p className="text-slate-400">{t.contact.card_location_value}</p>
-              </div>
-            </div>
+          {/* LEFT: Contact links */}
+          <div className="lg:col-span-2 space-y-3">
+            {contactLinks.map((link, index) => {
+              const content = (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-4 rounded-xl transition-all duration-200 group"
+                  style={{
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                    cursor: link.href ? 'pointer' : 'default',
+                  }}
+                  onMouseEnter={e => {
+                    if (link.href) e.currentTarget.style.borderColor = `${link.color}40`;
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                  }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
+                    style={{ background: `${link.color}12`, color: link.color }}
+                  >
+                    {link.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium mb-0.5" style={{ color: 'var(--text-muted)' }}>{link.label}</p>
+                    <p className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>{link.value}</p>
+                  </div>
+                  {link.href && (
+                    <ArrowRight className="w-4 h-4 ml-auto flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: link.color }} />
+                  )}
+                </div>
+              );
 
-             {/* Message Card (Social/General) */}
-             <div className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all">
-              <div className="p-3 bg-green-500/10 rounded-lg">
-                <MessageSquare className="w-6 h-6 text-green-500" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">WhatsApp / Chat</h3>
-                <p className="text-slate-400">+55 47 99952-1198</p>
-              </div>
-            </div>
-
-            {/* LinkedIn Card */}
-            <a 
-              href="https://www.linkedin.com/in/claudio-litz-65201a357/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all cursor-pointer block"
-              >
-              <div className="p-3 bg-blue-500/10 rounded-lg">
-                <Linkedin className="w-6 h-6 text-blue-500" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">LinkedIn</h3>
-                <p className="text-slate-400">{t.contact.linkedin_subtitle}</p>
-              </div>
-            </a>
-
-            {/* GitHub Card */}
-            <a 
-              href="https://github.com/Claudio-Litz" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-start gap-4 p-6 bg-slate-900 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all cursor-pointer block"
-            >
-              <div className="p-3 bg-blue-500/10 rounded-lg">
-                <Github className="w-6 h-6 text-blue-400" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">GitHub</h3>
-                <p className="text-slate-400">@Claudio-Litz</p>
-              </div>
-            </a>
-
+              return link.href ? (
+                <a key={index} href={link.href} target="_blank" rel="noopener noreferrer" className="block">
+                  {content}
+                </a>
+              ) : (
+                <div key={index}>{content}</div>
+              );
+            })}
           </div>
 
-          
-          {/* RIGHT SIDE: The Form */}
-          <div className="bg-slate-900 p-8 rounded-2xl border border-slate-700 shadow-xl">
-            <h3 className="text-xl font-bold text-white mb-6">{t.contact.form_title}</h3>
-            
+          {/* RIGHT: Form */}
+          <div
+            className="lg:col-span-3 p-8 rounded-2xl"
+            style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+          >
+            <h3 className="text-xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>
+              {t.contact.form_title}
+            </h3>
+
             {status === 'success' && (
-              <div className="mb-6 p-4 bg-green-900/30 border border-green-500/50 rounded-lg text-green-400">
-                {message}
+              <div className="mb-5 p-4 rounded-xl text-sm" style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.25)', color: '#10b981' }}>
+                {statusMessage}
               </div>
             )}
-            
             {status === 'error' && (
-              <div className="mb-6 p-4 bg-red-900/30 border border-red-500/50 rounded-lg text-red-400">
-                {message}
+              <div className="mb-5 p-4 rounded-xl text-sm" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)', color: '#ef4444' }}>
+                {statusMessage}
               </div>
             )}
-            
-            <form className="space-y-6" onSubmit={handleSubmit}>
+
+            <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                   {t.contact.name_label}
                 </label>
                 <input
@@ -155,14 +178,16 @@ const Contact = () => {
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none"
+                  style={inputStyle}
                   placeholder="John Doe"
                   required
+                  onFocus={e => (e.target.style.borderColor = '#3b82f660')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                   {t.contact.email_label}
                 </label>
                 <input
@@ -170,37 +195,44 @@ const Contact = () => {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none"
+                  style={inputStyle}
                   placeholder="john@example.com"
                   required
+                  onFocus={e => (e.target.style.borderColor = '#3b82f660')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                   {t.contact.message_label}
                 </label>
                 <textarea
                   id="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-slate-500 transition-all outline-none resize-none"
+                  rows={5}
+                  style={{ ...inputStyle, resize: 'none' }}
                   required
-                ></textarea>
+                  onFocus={e => (e.target.style.borderColor = '#3b82f660')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
+                />
               </div>
 
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{
+                  background: 'linear-gradient(135deg, #2563eb, #0891b2)',
+                  fontFamily: 'Syne, sans-serif',
+                }}
               >
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4" />
                 {status === 'loading' ? 'Sending...' : t.contact.btn_submit}
               </button>
             </form>
           </div>
-
         </div>
       </div>
     </section>
