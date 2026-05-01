@@ -229,7 +229,7 @@ const Contact = () => {
                 }}
               >
                 <Send className="w-4 h-4" />
-                {status === 'loading' ? 'Sending...' : t.contact.btn_submit}
+                {status === 'loading' ? t.contact.btn_sending : t.contact.btn_submit}
               </button>
             </form>
           </div>

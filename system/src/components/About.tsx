@@ -79,7 +79,7 @@ const About = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-60"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
               </span>
-              <span className="text-sm font-medium text-blue-400">Based in Brazil · Working Worldwide</span>
+              <span className="text-sm font-medium text-blue-400">{t.about.status}</span>
             </div>
           </div>
         </div>

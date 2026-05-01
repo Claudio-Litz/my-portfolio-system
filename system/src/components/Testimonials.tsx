@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Quote, Send, CheckCircle, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // ── ADD NEW TESTIMONIALS HERE ─────────────────────────────────────────────────
 const TESTIMONIALS = [
@@ -69,6 +70,7 @@ function fieldBorder({ error, focused }: FieldProps): string {
 }
 
 const Testimonials = () => {
+  const { t } = useLanguage();
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', role: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -77,11 +79,11 @@ const Testimonials = () => {
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!form.name.trim()) e.name = 'Name is required.';
-    if (!form.email.trim()) e.email = 'Email is required.';
-    else if (!EMAIL_REGEX.test(form.email)) e.email = 'Enter a valid email address.';
-    if (!form.message.trim()) e.message = 'Please write your testimonial.';
-    else if (form.message.trim().length < 20) e.message = 'Testimonial must be at least 20 characters.';
+    if (!form.name.trim()) e.name = t.testimonials.validation_name;
+    if (!form.email.trim()) e.email = t.testimonials.validation_email;
+    else if (!EMAIL_REGEX.test(form.email)) e.email = t.testimonials.validation_email_invalid;
+    if (!form.message.trim()) e.message = t.testimonials.validation_message;
+    else if (form.message.trim().length < 20) e.message = t.testimonials.validation_message_min;
     return e;
   };
 
@@ -129,12 +131,12 @@ const Testimonials = () => {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="section-label mb-4">Social Proof</p>
+          <p className="section-label mb-4">{t.testimonials.subtitle}</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ fontFamily: 'Syne, sans-serif', color: 'var(--text-primary)' }}>
-            What Clients Say
+            {t.testimonials.title}
           </h2>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-            Real feedback from real projects — every testimonial is verified before publishing.
+            {t.testimonials.description}
           </p>
         </div>
 
@@ -151,7 +153,7 @@ const Testimonials = () => {
               >
                 <Quote className="w-6 h-6 mb-5 opacity-40" style={{ color }} />
                 <p className="text-base leading-relaxed flex-1 mb-6" style={{ color: 'var(--text-secondary)' }}>
-                  "{item.quote}"
+                  &quot;{item.quote}&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
@@ -187,10 +189,10 @@ const Testimonials = () => {
           >
             <div>
               <p className="font-semibold text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
-                Worked with me? Leave a testimonial
+                {t.testimonials.worked_title}
               </p>
               <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                Submissions are reviewed before being published.
+                {t.testimonials.worked_subtitle}
               </p>
             </div>
             {showForm
@@ -207,17 +209,17 @@ const Testimonials = () => {
                 <div className="flex flex-col items-center gap-3 py-10 text-center">
                   <CheckCircle className="w-10 h-10" style={{ color: '#10b981' }} />
                   <p className="font-semibold text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
-                    Thank you for your feedback!
+                    {t.testimonials.success_title}
                   </p>
                   <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-                    Your testimonial has been received and will be reviewed before publishing.
+                    {t.testimonials.success_desc}
                   </p>
                   <button
                     onClick={() => setStatus('idle')}
                     className="mt-2 text-sm underline underline-offset-2 transition-colors"
                     style={{ color: 'var(--text-muted)' }}
                   >
-                    Submit another
+                    {t.testimonials.success_another}
                   </button>
                 </div>
               ) : (
@@ -227,24 +229,27 @@ const Testimonials = () => {
                     <div className="flex items-center gap-2 p-4 rounded-xl text-sm"
                       style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)', color: '#ef4444' }}>
                       <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                      Something went wrong. Please try again or contact me directly.
+                      {t.testimonials.error_msg}
                     </div>
                   )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Name */}
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
-                        Name <span style={{ color: '#ef4444' }}>*</span>
+                      <label htmlFor="testimonial-name" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
+                        {t.testimonials.form_name} <span style={{ color: '#ef4444' }}>*</span>
                       </label>
                       <input
-                        id="name"
+                        id="testimonial-name"
                         type="text"
                         value={form.name}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          setForm(prev => ({ ...prev, name: e.target.value }));
+                          if (errors.name) setErrors(prev => ({ ...prev, name: '' }));
+                        }}
                         onFocus={() => setFocused(p => ({ ...p, name: true }))}
                         onBlur={() => setFocused(p => ({ ...p, name: false }))}
-                        placeholder="Your name"
+                        placeholder={t.testimonials.placeholder_name}
                         style={{ ...inputBase, border: fieldBorder({ error: errors.name, focused: focused.name }) }}
                       />
                       {errors.name && <p className="mt-1 text-xs" style={{ color: '#ef4444' }}>{errors.name}</p>}
@@ -252,17 +257,20 @@ const Testimonials = () => {
 
                     {/* Email */}
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
-                        Email <span style={{ color: '#ef4444' }}>*</span>
+                      <label htmlFor="testimonial-email" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
+                        {t.testimonials.form_email} <span style={{ color: '#ef4444' }}>*</span>
                       </label>
                       <input
-                        id="email"
+                        id="testimonial-email"
                         type="email"
                         value={form.email}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          setForm(prev => ({ ...prev, email: e.target.value }));
+                          if (errors.email) setErrors(prev => ({ ...prev, email: '' }));
+                        }}
                         onFocus={() => setFocused(p => ({ ...p, email: true }))}
                         onBlur={() => setFocused(p => ({ ...p, email: false }))}
-                        placeholder="your@email.com"
+                        placeholder={t.testimonials.placeholder_email}
                         style={{ ...inputBase, border: fieldBorder({ error: errors.email, focused: focused.email }) }}
                       />
                       {errors.email && <p className="mt-1 text-xs" style={{ color: '#ef4444' }}>{errors.email}</p>}
@@ -271,47 +279,49 @@ const Testimonials = () => {
 
                   {/* Role (optional) */}
                   <div>
-                    <label htmlFor="role" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
-                      Role / Company <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>(optional)</span>
+                    <label htmlFor="testimonial-role" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
+                      {t.testimonials.form_role} <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>{t.testimonials.form_optional}</span>
                     </label>
                     <input
-                      id="role"
+                      id="testimonial-role"
                       type="text"
                       value={form.role}
-                      onChange={handleChange}
+                      onChange={(e) => setForm(prev => ({ ...prev, role: e.target.value }))}
                       onFocus={() => setFocused(p => ({ ...p, role: true }))}
                       onBlur={() => setFocused(p => ({ ...p, role: false }))}
-                      placeholder="e.g. Shop Owner · São Paulo"
+                      placeholder={t.testimonials.placeholder_role}
                       style={{ ...inputBase, border: fieldBorder({ error: undefined, focused: focused.role }) }}
                     />
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
-                      Your testimonial <span style={{ color: '#ef4444' }}>*</span>
+                    <label htmlFor="testimonial-message" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
+                      {t.testimonials.form_testimonial} <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <textarea
-                      id="message"
+                      id="testimonial-message"
                       rows={4}
                       value={form.message}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        setForm(prev => ({ ...prev, message: e.target.value }));
+                        if (errors.message) setErrors(prev => ({ ...prev, message: '' }));
+                      }}
                       onFocus={() => setFocused(p => ({ ...p, message: true }))}
                       onBlur={() => setFocused(p => ({ ...p, message: false }))}
-                      placeholder="Tell others about your experience working with me..."
+                      placeholder={t.testimonials.placeholder_testimonial}
                       style={{ ...inputBase, border: fieldBorder({ error: errors.message, focused: focused.message }), resize: 'none' }}
                     />
                     {errors.message
                       ? <p className="mt-1 text-xs" style={{ color: '#ef4444' }}>{errors.message}</p>
-                      : <p className="mt-1 text-xs" style={{ color: 'var(--text-muted)' }}>Minimum 20 characters.</p>
+                      : <p className="mt-1 text-xs" style={{ color: 'var(--text-muted)' }}>{t.testimonials.form_min_chars}</p>
                     }
                   </div>
 
                   {/* Notice + Submit */}
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-1">
                     <p className="text-xs flex-1" style={{ color: 'var(--text-muted)' }}>
-                      🔒 Your email is only used for verification and will never be displayed publicly.
-                      Testimonials are reviewed before appearing on this site.
+                      🔒 {t.testimonials.form_privacy}
                     </p>
                     <button
                       type="submit"
@@ -320,7 +330,7 @@ const Testimonials = () => {
                       style={{ background: 'linear-gradient(135deg, #2563eb, #0891b2)', fontFamily: 'Syne, sans-serif' }}
                     >
                       <Send className="w-4 h-4" />
-                      {status === 'loading' ? 'Submitting…' : 'Submit Testimonial'}
+                      {status === 'loading' ? t.testimonials.btn_submitting : t.testimonials.btn_submit}
                     </button>
                   </div>
                 </form>

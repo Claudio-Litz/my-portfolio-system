@@ -1,7 +1,12 @@
+"use client";
+
 import React from 'react';
 import { Code2 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-10" style={{ background: 'var(--bg-base)', borderTop: '1px solid var(--border)' }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -14,7 +19,7 @@ const Footer = () => {
         </div>
 
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          © {new Date().getFullYear()} Claudio Glitz · Built with Next.js & Tailwind
+          © {new Date().getFullYear()} {t.footer.copyright}
         </p>
 
         <a
@@ -22,7 +27,7 @@ const Footer = () => {
           className="text-sm font-semibold transition-colors duration-200 hover:text-white"
           style={{ color: 'var(--text-muted)' }}
         >
-          Start a Project →
+          {t.footer.cta}
         </a>
       </div>
     </footer>

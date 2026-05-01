@@ -68,7 +68,7 @@ const Hero = () => {
         </p>
 
         <p className="text-sm mb-12 tracking-wide" style={{ color: 'var(--text-muted)' }}>
-          Practical web solutions for real problems.
+          {t.hero.tagline}
         </p>
 
         {/* CTAs */}
@@ -83,7 +83,7 @@ const Hero = () => {
             }}
           >
             <Zap className="w-4 h-4" />
-            Start a Project
+            {t.hero.btn_contact}
             <ArrowRight className="w-4 h-4" />
           </a>
 
